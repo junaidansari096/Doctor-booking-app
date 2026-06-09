@@ -1,13 +1,25 @@
-// AppNavigator.js (Placeholder for future Home navigation, Day 3 onwards)
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const AppNavigator = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>App Navigator Placeholder</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>App Navigator Placeholder</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8fafc',
+  },
+  text: {
+    fontSize: 16,
+    color: '#64748b',
+  },
+});
 
 export default AppNavigator;

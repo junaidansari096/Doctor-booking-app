@@ -4,6 +4,7 @@ import SplashScreen from '../screens/auth/SplashScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import HomeScreen from '../screens/home/HomeScreen';
+import DoctorProfileScreen from '../screens/home/DoctorProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +45,15 @@ const AuthNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="DoctorProfile"
+        component={DoctorProfileScreen}
+        options={{
+          headerShown: true,
+          title: 'Doctor Profile',
+          headerBackTitleVisible: false,
+        }}
       />
     </Stack.Navigator>
   );
