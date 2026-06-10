@@ -130,3 +130,26 @@ export const dummyDoctors = [
     avatar: null,
   }
 ];
+
+export const dummyReviews = [
+  { id: '1', rating: 5, comment: 'Very thorough and patient. Explained everything clearly.', date: 'May 2026' },
+  { id: '2', rating: 4, comment: 'Good doctor but wait time was long.', date: 'April 2026' },
+  { id: '3', rating: 5, comment: 'Best cardiologist I have visited. Highly recommended.', date: 'March 2026' },
+  { id: '4', rating: 3, comment: 'Decent consultation. Could explain more.', date: 'Feb 2026' },
+  { id: '5', rating: 5, comment: 'Very professional. Made me feel comfortable.', date: 'Jan 2026' },
+];
+
+export const dummySlots = [
+  { id: 's1', time: '09:00 AM', booked: false },
+  { id: 's2', time: '09:30 AM', booked: true },
+  { id: 's3', time: '10:00 AM', booked: false },
+  { id: 's4', time: '10:30 AM', booked: false },
+  { id: 's5', time: '11:00 AM', booked: true },
+  { id: 's6', time: '11:30 AM', booked: false },
+  { id: 's7', time: '02:00 PM', booked: false },
+  { id: 's8', time: '02:30 PM', booked: true },
+  { id: 's9', time: '03:00 PM', booked: false },
+  { id: 's10', time: '03:30 PM', booked: false },
+  { id: 's11', time: '04:00 PM', booked: false },
+  { id: 's12', time: '04:30 PM', booked: true },
+];

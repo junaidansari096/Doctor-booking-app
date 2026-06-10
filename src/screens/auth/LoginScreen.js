@@ -11,6 +11,7 @@ import {
   ScrollView,
   StatusBar,
   Keyboard,
+  Image,
 } from 'react-native';
 
 const LoginScreen = ({ navigation, route }) => {
@@ -75,6 +76,11 @@ const LoginScreen = ({ navigation, route }) => {
       >
         <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           <View style={styles.header}>
+            <Image
+              source={require('../../assets/logo.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
             <Text style={styles.logoTitle}>DoctorApp</Text>
             <Text style={styles.logoSubtitle}>Your health, simplified</Text>
           </View>
@@ -158,7 +164,13 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    borderRadius: 16,
+    marginBottom: 12,
   },
   logoTitle: {
     fontSize: 36,

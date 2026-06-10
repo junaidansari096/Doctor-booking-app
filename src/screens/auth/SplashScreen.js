@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const SplashScreen = () => {
@@ -20,6 +20,11 @@ const SplashScreen = () => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#1a4a7a" />
       <View style={styles.content}>
+        <Image
+          source={require('../../assets/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <Text style={styles.title}>DoctorApp</Text>
         <Text style={styles.subtitle}>Your health, simplified</Text>
       </View>
@@ -36,6 +41,13 @@ const styles = StyleSheet.create({
   },
   content: {
     alignItems: 'center',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    marginBottom: 20,
+    backgroundColor: '#ffffff', // Ensures logo contrast
   },
   title: {
     fontSize: 36,

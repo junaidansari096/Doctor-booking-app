@@ -5,6 +5,9 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import HomeScreen from '../screens/home/HomeScreen';
 import DoctorProfileScreen from '../screens/home/DoctorProfileScreen';
+import SlotPickerScreen from '../screens/booking/SlotPickerScreen';
+import BookingSummaryScreen from '../screens/booking/BookingSummaryScreen';
+import BookingConfirmationScreen from '../screens/booking/BookingConfirmationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +56,31 @@ const AuthNavigator = () => {
           headerShown: true,
           title: 'Doctor Profile',
           headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="SlotPicker"
+        component={SlotPickerScreen}
+        options={{
+          headerShown: true,
+          title: 'Select Slot',
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="BookingSummary"
+        component={BookingSummaryScreen}
+        options={{
+          headerShown: true,
+          title: 'Booking Summary',
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="BookingConfirmation"
+        component={BookingConfirmationScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

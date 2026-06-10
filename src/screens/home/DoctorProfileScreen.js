@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
+import { dummyReviews } from '../../data/dummyData';
 
 const DoctorProfileScreen = ({ route, navigation }) => {
   const { doctor } = route.params;
+  const [activeTab, setActiveTab] = useState('about');
+
+  const renderStars = (rating) => {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+      stars += i <= rating ? '★' : '☆';
+    }
+    return stars;
+  };
 
   const getInitials = (name) => {
     if (!name) return 'DR';
@@ -54,22 +64,65 @@ const DoctorProfileScreen = ({ route, navigation }) => {
           </View>
         </View>
 
-        {/* Consultation Fee Section */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>Consultation Fee</Text>
-          <Text style={styles.feeText}>₹{doctor.fee} (per visit)</Text>
+        {/* Tab Bar */}
+        <View style={styles.tabBar}>
+          <TouchableOpacity
+            style={[styles.tabButton, activeTab === 'about' && styles.activeTabButton]}
+            onPress={() => setActiveTab('about')}
+            activeOpacity={0.7}
+          >
+            <Text style={[styles.tabButtonText, activeTab === 'about' && styles.activeTabButtonText]}>About</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.tabButton, activeTab === 'reviews' && styles.activeTabButton]}
+            onPress={() => setActiveTab('reviews')}
+            activeOpacity={0.7}
+          >
+            <Text style={[styles.tabButtonText, activeTab === 'reviews' && styles.activeTabButtonText]}>
+              Reviews ({dummyReviews.length})
+            </Text>
+          </TouchableOpacity>
         </View>
 
-        {/* About Section */}
-        <View style={styles.sectionCard}>
-          <Text style={styles.sectionTitle}>About Doctor</Text>
-          <Text style={styles.aboutText}>{doctor.about}</Text>
-        </View>
+        {activeTab === 'about' ? (
+          <>
+            {/* Consultation Fee Section */}
+            <View style={styles.sectionCard}>
+              <Text style={styles.sectionTitle}>Consultation Fee</Text>
+              <Text style={styles.feeText}>₹{doctor.fee} (per visit)</Text>
+            </View>
+
+            {/* About Section */}
+            <View style={styles.sectionCard}>
+              <Text style={styles.sectionTitle}>About Doctor</Text>
+              <Text style={styles.aboutText}>{doctor.about}</Text>
+            </View>
+          </>
+        ) : (
+          /* Reviews Section */
+          <View style={styles.sectionCard}>
+            <Text style={styles.sectionTitle}>Patient Reviews</Text>
+            {dummyReviews.map((review, index) => (
+              <View key={review.id} style={styles.reviewContainer}>
+                <View style={styles.reviewHeader}>
+                  <Text style={styles.reviewStars}>{renderStars(review.rating)}</Text>
+                  <Text style={styles.reviewDate}>{review.date}</Text>
+                </View>
+                <Text style={styles.reviewComment}>{review.comment}</Text>
+                {index < dummyReviews.length - 1 && <View style={styles.reviewSeparator} />}
+              </View>
+            ))}
+          </View>
+        )}
       </ScrollView>
 
       {/* Book Appointment Button */}
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.bookButton} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.bookButton}
+          activeOpacity={0.8}
+          onPress={() => navigation.navigate('SlotPicker', { doctor })}
+        >
           <Text style={styles.bookButtonText}>Book Appointment</Text>
         </TouchableOpacity>
       </View>
@@ -247,6 +300,64 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: '700',
+  },
+  tabBar: {
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 4,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    marginBottom: 16,
+  },
+  tabButton: {
+    flex: 1,
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  activeTabButton: {
+    backgroundColor: '#eff6ff',
+    borderWidth: 1,
+    borderColor: '#bfdbfe',
+  },
+  tabButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#64748b',
+  },
+  activeTabButtonText: {
+    color: '#1d4ed8',
+    fontWeight: '700',
+  },
+  reviewContainer: {
+    marginBottom: 12,
+  },
+  reviewHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  reviewStars: {
+    fontSize: 14,
+    color: '#eab308',
+    fontWeight: 'bold',
+  },
+  reviewDate: {
+    fontSize: 12,
+    color: '#94a3b8',
+  },
+  reviewComment: {
+    fontSize: 14,
+    color: '#334155',
+    lineHeight: 20,
+  },
+  reviewSeparator: {
+    height: 1,
+    backgroundColor: '#f1f5f9',
+    marginTop: 12,
+    marginBottom: 12,
   },
 });
 
